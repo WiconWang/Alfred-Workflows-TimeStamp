@@ -24,10 +24,22 @@ class TimeStramp{
         }
         if(is_numeric($query)){
             $cle = $query-$now;
-            $d = floor($cle/3600/24);
-            $h = floor(($cle%(3600*24))/3600);
-            $m = floor(($cle%(3600*24))%3600/60);
-            $s = floor(($cle%(3600*24))%60);
+            if ($cle > 0) {
+                $d = floor($cle/3600/24);
+                $h = floor(($cle%(3600*24))/3600);
+                $m = floor(($cle%(3600*24))%3600/60);
+                $s = floor(($cle%(3600*24))%60);
+            }elseif ($cle < 0) {
+                $d = ceil($cle/3600/24);
+                $h = ceil(($cle%(3600*24))/3600);
+                $m = ceil(($cle%(3600*24))%3600/60);
+                $s = ceil(($cle%(3600*24))%60);
+            }else {
+                $d = 0;
+                $h = 0;
+                $m = 0;
+                $s = 0;
+            }
             $workflows->result( $query,
                 date('Y-m-d H:i:s',$query),
                 '目标时间：'.date('Y-m-d H:i:s',$query),
