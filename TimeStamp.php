@@ -2,13 +2,13 @@
 ini_set('date.timezone','Asia/Shanghai');
 require_once('workflows.php');
 
-class TimeStramp{
+class TimeStamp{
     private function isDateTime($dateTime){
         $ret = strtotime($dateTime);
         return $ret !== FALSE && $ret != -1;
     }
 
-    public function getTimeStramp($query){
+    public function getTimeStamp($query){
         $workflows = new Workflows();
         $now = time();
         $query = trim($query);
